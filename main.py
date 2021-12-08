@@ -2,6 +2,10 @@
 # This Python file uses the following encoding: utf-8
 import json
 import yaml
+import time
+from datetime import datetime
+from tqdm import tqdm
+
 from pprint import pprint
 
 
@@ -70,6 +74,9 @@ def de_serialization(sort_data: list) -> None:
         None:
             Ничего не возвращает.
     '''
+    # with open('sort.txt', mode='w', encoding='utf8') as f:
+    #     f.write(json.dumps(sort_data, ensure_ascii=False))
+
     with open('sort.yaml', mode='w', encoding='utf8') as f:
         yaml.dump(sort_data, f, default_flow_style=False)
     with open('sort.yaml', encoding='utf8') as f:
@@ -78,8 +85,11 @@ def de_serialization(sort_data: list) -> None:
 
 
 
-valid_data = to_write_from(r'/Users/dary/PycharmProjects/прикладное_программирование_лаба2/new_28.txt')
-sort_data = selection_sort(valid_data._data[0:5], 'height')
-de_serialization(sort_data)
+if __name__ == '__main__':
+    start_time = datetime.now()
+    valid_data = to_write_from(r'/Users/dary/PycharmProjects/прикладное_программирование_лаба2/new_28.txt')
+    sort_data = selection_sort(valid_data._data[0:1000], 'age')
+    de_serialization(sort_data)
+    print(datetime.now() - start_time)
 
 
